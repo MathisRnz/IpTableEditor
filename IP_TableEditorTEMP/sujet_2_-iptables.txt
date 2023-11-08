@@ -1,0 +1,13 @@
+# Autoriser les connexions établies et connexions locales
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+# Autoriser le trafic sur les ports 22, 80, 443 et 8080
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp --dport 443 -j ACCEPT
+-A INPUT -p tcp --dport 8080 -j ACCEPT
+# Bloquer le trafic ICMP entrant
+-A INPUT -p icmp -j DROP
+# Bloquer tout le reste
+-A INPUT -j DROP
+
